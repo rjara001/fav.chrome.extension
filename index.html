@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* Style for the balloon */
+        /* Style for the balloon */
+        .balloon {
+            position: fixed;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 9999;
+        }
+
+        .balloon-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .balloon-header h3 {
+            margin: 0;
+        }
+
+        .balloon-header .close-btn {
+            cursor: pointer;
+        }
+
+        .balloon label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .balloon input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .balloon button {
+            margin-right: 5px;
+        }
+
+        .balloon hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        .item {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="balloon" id="balloon">
+        <div class="balloon-header">
+            <h3>Balloon</h3>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div id="url">https://</div>
+        <div class="item">
+
+            <input type="text" id="name" placeholder="Enter name" autofocus>
+        </div>
+
+        <button id="save">Save</button>
+        <hr>
+        <div class="item">
+
+            <input type="text" id="filter" placeholder="Enter filter">
+        </div>
+    </div>
+
+    <script>
+        // Get the balloon element
+
+
+
+    </script>
+</body>
+
+</html>
