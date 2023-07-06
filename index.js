@@ -2,6 +2,7 @@
 var lastClientX, lastClientY;
 // Function to show the balloon message
 var shadowRoot;
+var balloon;
 
 function setFocus() {
     setTimeout(() => {
@@ -47,7 +48,7 @@ function handleKeyDown(event) {
 // Function to show the balloon message at the specified coordinates
 function showBalloon(x, y) {
     var url = shadowRoot.getElementById("url");
-    var balloon = shadowRoot.getElementById("balloon");
+    balloon = shadowRoot.getElementById("balloon");
 
     url.innerText = window.location.href;
 
@@ -61,15 +62,15 @@ $(document).ready(function () {
     // var showBalloonButton = document.getElementById("showBalloon");
     var container = document.createElement("div");
 
-
+    document.body.appendChild(container);
 
     shadowRoot = container.attachShadow({ mode: 'open' });
 
     // Create a new HTML element
-    var balloonDiv = document.createElement("div");
-    balloonDiv.classList.add("balloon");
-    balloonDiv.id = "balloon";
-    balloonDiv.innerHTML = `
+    balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.id = "balloon";
+    balloon.innerHTML = `
         <div class="balloon-header">
           <h3>Balloon</h3>
           <span class="close-btn">&times;</span>
@@ -84,16 +85,16 @@ $(document).ready(function () {
           <input type="text" id="filter" placeholder="Enter filter">
         </div>
       `;
-
+      
     // Append the created element to the document body
-    shadowRoot.appendChild(balloonDiv);
+    shadowRoot.appendChild(balloon);
 
     // Optional: Add event listeners or further functionality to the added HTML code
 
     // Example close button functionality
-    var closeButton = balloonDiv.querySelector(".close-btn");
+    var closeButton = balloon.querySelector(".close-btn");
     closeButton.addEventListener("click", function () {
-        shadowRoot.removeChild(balloonDiv);
+        shadowRoot.removeChild(balloon);
     });
 
  
@@ -103,4 +104,5 @@ $(document).ready(function () {
         hideBalloon();
     });
 
+    hideBalloon();
 });
