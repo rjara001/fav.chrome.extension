@@ -1,22 +1,13 @@
 {
     "manifest_version": 3,
-    "version": "0.36",
-    "short_name": "Menu",
-    "name": "Speed Bookmark",
-    "description": "Find your books mark in a rapid way using this extension",
+    "version": "0.01",
+    "short_name": "ShortCut",
+    "name": "Speed ShortCut",
+    "description": "Access quickly the urls you use recurrently",
     "homepage_url": "https://www.randuslab.com/",
-    // "background": {
-    //     "service_worker": "background.js"
-    // },
     "action": {},
-    // "icons": {
-    //     "16": "icons/icon16.png",
-    //     "48": "icons/icon48.png",
-    //     "128": "icons/icon128.png"
-    // },
     "permissions": [
-        "notifications",
-        "bookmarks"
+        "storage"
     ],
     "web_accessible_resources": [
         {
@@ -26,6 +17,9 @@
             ]
         }
     ],
+    "background": {
+        "service_worker": "background.js"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -35,6 +29,12 @@
             ],
             "js": [
                 "jquery/jquery.min.js",
+                "js/box.util.js",
+                "js/store.js",
+                "js/autocomplete.util.js",
+                "js/move.js",
+                "constants.js",
+                "content.js",
                 "index.js"
             ],
             "css": [],

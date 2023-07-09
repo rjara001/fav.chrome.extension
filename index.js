@@ -3,23 +3,29 @@ var lastClientX, lastClientY;
 // Function to show the balloon message
 var shadowRoot;
 var balloon;
+var _matchInput = false;
 
-function setFocus() {
+function save() {
+    var url = shadowRoot.getElementById("url");
+    var name = shadowRoot.getElementById("name");
+
+    if (!ITEMS.find(_ => _.name === name.value))
+        localSaveValue({ name: name.value, url: url.value, date: (new Date()).toISOString() });
+}
+
+function clean(input) {
+    var input = shadowRoot.getElementById(input);
+    input.value = '';
+}
+
+function setFocus(input) {
     setTimeout(() => {
-        var name = shadowRoot.getElementById("name");
+        var name = shadowRoot.getElementById(input);
         name.focus();
         name.scrollIntoView();
     }, 100)
 
 }
-// Function to hide the balloon message
-function hideBalloon() {
-    balloon.style.display = "none";
-}
-// document.addEventListener("DOMContentLoaded", function () {
-//     var nameInput = document.getElementById("nameInput");
-//     nameInput.focus();
-// });
 
 // Event listener for mousemove event
 document.addEventListener("mousemove", function (event) {
@@ -37,30 +43,20 @@ document.addEventListener("keydown", handleKeyDown);
 // Function to handle keydown event
 function handleKeyDown(event) {
     // Check if the user presses Ctrl (Cmd on Mac) + F
-    
-    if ((event.ctrlKey || event.metaKey) && event.key === "x") {
+
+    if (shortcutValue(event)) {
         showBalloon(lastClientX, lastClientY);
-        // name.focus();
-        setFocus();
+        clean('filter');
+        setFocus('filter');
     }
 }
-
 // Function to show the balloon message at the specified coordinates
-function showBalloon(x, y) {
-    var url = shadowRoot.getElementById("url");
-    balloon = shadowRoot.getElementById("balloon");
-
-    url.innerText = window.location.href;
-
-    balloon.style.display = "block";
-    balloon.style.left = x + "px";
-    balloon.style.top = y + "px";
-}
 
 $(document).ready(function () {
 
-    // var showBalloonButton = document.getElementById("showBalloon");
     var container = document.createElement("div");
+
+    container.setAttribute("id", _BOX_ID);
 
     document.body.appendChild(container);
 
@@ -70,39 +66,89 @@ $(document).ready(function () {
     balloon = document.createElement("div");
     balloon.classList.add("balloon");
     balloon.id = "balloon";
-    balloon.innerHTML = `
-        <div class="balloon-header">
-          <h3>Balloon</h3>
-          <span class="close-btn">&times;</span>
-        </div>
-        <div id="url">https://</div>
-        <div class="item">
-          <input type="text" id="name" placeholder="Enter name" autofocus>
-        </div>
-        <button id="save">Save</button>
-        <hr>
-        <div class="item">
-          <input type="text" id="filter" placeholder="Enter filter">
-        </div>
-      `;
-      
+    balloon.innerHTML = _HTML_BOX;
+
     // Append the created element to the document body
     shadowRoot.appendChild(balloon);
+    const linkElem = document.createElement('style');
 
-    // Optional: Add event listeners or further functionality to the added HTML code
+    linkElem.innerHTML = _STYLE_AS_STRING;
+
+    shadowRoot.appendChild(linkElem);
 
     // Example close button functionality
     var closeButton = balloon.querySelector(".close-btn");
+    var saveButton = balloon.querySelector("#save");
+    var name = balloon.querySelector("#name");
+    var filter = balloon.querySelector("#filter");
+    var url = balloon.querySelector("#url");
+    var header = balloon.querySelector(".balloon-header");
+
+    header.addEventListener('mousedown', startDragging);
+
     closeButton.addEventListener("click", function () {
-        shadowRoot.removeChild(balloon);
-    });
-
- 
-
-    var closeBtn = shadowRoot.querySelector(".close-btn");
-    closeBtn.addEventListener('click', () => {
         hideBalloon();
     });
 
+    saveButton.addEventListener("click", function () {
+        save();
+    });
+
+    saveButton.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && url.value) {
+            save();
+        }
+    }); 
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && url.value && name.value==='') {
+            go(url.value);
+        }
+    });
+
+    filter.addEventListener("input", function (event) {
+        var query = event.target.value;
+
+        if (ITEMS.length > 0) {
+            var matches = getSuggestions(query, ITEMS.map(_ => _.name));
+
+            matchInput(query, filter, url);
+
+            displaySuggestions(matches, (value) => {
+                matchInput(value, filter, url);
+                go(url.value);
+            });
+        }
+    });
+
+
     hideBalloon();
 });
+function shortcutValue(event) {
+
+    console.log('ctrlKey:' + event.ctrlKey + 'shiftKey:' + event.shiftKey + 'key:' + event.key);
+    console.log('value:' + (event.ctrlKey===true && event.shiftKey && (event.key === "x" || event.key === "X")));
+    console.log(shorcutValue)
+    switch (shorcutValue)
+    {
+        case _MODE_SHORTCUT.CtrlShiftX: return event.ctrlKey && event.shiftKey && (event.key === "x" || event.key === "X"); 
+        case _MODE_SHORTCUT.CtrlShiftF: return event.ctrlKey && event.shiftKey && (event.key === "f" || event.key === "F"); 
+        case _MODE_SHORTCUT.CtrlShiftD: return event.ctrlKey && event.shiftKey && (event.key === "d" || event.key === "D"); 
+        default: return event.key === "x"; 
+    }
+}
+
+function go(url) {
+    window.location.href = url;
+}
+
+function matchInput(value, filter, url) {
+    var item = ITEMS.find(_ => _.name === value);
+
+    if (item) {
+        _matchInput = true;
+        filter.value = item.name;
+        url.value = item.url;
+    }
+}
+

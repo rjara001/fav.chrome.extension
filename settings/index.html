@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="../css/pop.css">
+
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="header">Speed Shortcut</h1>
+    <p class="instructions">
+        Press Ctrl + X
+    </p>
+    <div class="checkboxgroup">
+
+      <label class="toggle-label">
+        <input checked type="radio" name="menu-active" class="toggle-checkbox" value="CtrlX" /><label for="option1">Press Ctrl + X</label>
+        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftX" /><label for="option1">Press Ctrl + Shift + X</label>
+        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftF" /><label for="option1">Press Ctrl + Shift + F</label>
+        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftD" /><label for="option1">Press Ctrl + Shift + D</label>
+        
+      </label>
+    </div>
+    <!-- <p class="feedback">Share your feedback with us by clicking <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSe8-Q7REnfG5ZA3Vq9YhxbAdas7ktnwFIBlECRTx_GISi30YA/viewform?usp=sf_link">here</a><br>
+        Like my work?Buy me a <a
+        href="https://bmc.link/menuextend">coffee</a> or <a href="https://bmc.link/menuextend">beer</a>!
+    </p> -->
+  </div>
+  <form>
+    <div class="text">
+      <div>Name:</div>
+      <div><input type="text" id="name"></input></div>
+    </div>
+
+    <div class="text">
+      <div>Url:</div>
+      <div><input type="text" id="url"></input></div>
+    </div>
+    <div>
+      <button>Save</button>
+    </div>
+  </form>
+
+  <table id="myTable">
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+
+  <button id="exportButton">Export Data</button>
+  <input type="file" id="importInput" accept=".csv" style="display: none;">
+  <button id="importButton">Import Data</button>
+
+  <script src="../js/pop.js"></script>
+  <script src="../js/pop.radio.js"></script>
+  <!-- <script src="./js/util.js"></script> -->
+
+</body>
+
+</html>
