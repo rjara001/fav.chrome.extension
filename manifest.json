@@ -1,9 +1,9 @@
 {
     "manifest_version": 3,
-    "version": "0.01",
-    "short_name": "ShortCut",
-    "name": "Speed ShortCut",
-    "description": "Access quickly the urls you use recurrently",
+    "version": "0.21",
+    "short_name": "SpeedLink",
+    "name": "Speed Link",
+    "description": "Lightning-fast URL access with custom shortcuts. Effortlessly switch environments, manage pipelines, and access Jira. Boost your development productivity. Install now!",
     "homepage_url": "https://www.randuslab.com/",
     "action": {},
     "permissions": [
