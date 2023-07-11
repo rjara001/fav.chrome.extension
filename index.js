@@ -74,6 +74,7 @@ $(document).ready(function () {
     var url = balloon.querySelector("#url");
     var header = balloon.querySelector(".balloon-header");
     var status = balloon.querySelector(".status");
+    var newTab = balloon.querySelector("#newTab");
 
     header.addEventListener('mousedown', startDragging);
 
@@ -92,9 +93,44 @@ $(document).ready(function () {
     });
  
     filter.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowDown") {
+            var suggestionsList = shadowRoot.getElementById("suggestionsList");
+            var selectedItem = suggestionsList.querySelector(".selected");
+          
+            if (selectedItem) {
+              var nextItem = selectedItem.nextElementSibling;
+              if (nextItem) {
+                selectedItem.classList.remove("selected");
+                nextItem.classList.add("selected");
+              }
+            } else {
+              var firstItem = suggestionsList.querySelector("li");
+              if (firstItem) {
+                firstItem.classList.add("selected");
+              }
+            }
+          }
+          
+          if (event.key === "ArrowUp") {
+            var suggestionsList = shadowRoot.getElementById("suggestionsList");
+            var selectedItem = suggestionsList.querySelector(".selected");
+          
+            if (selectedItem) {
+              var previousItem = selectedItem.previousElementSibling;
+              if (previousItem) {
+                selectedItem.classList.remove("selected");
+                previousItem.classList.add("selected");
+              }
+            }
+          }
         if (event.key === "Enter") {
-            actionFilterEnter(url, event);
-            return;
+            var suggestionsList = shadowRoot.getElementById("suggestionsList");
+            var selectedItem = suggestionsList.querySelector(".selected");
+
+            if (selectedItem)
+                actionFilterLetter(selectedItem.innerText, url, status);
+
+            actionFilterEnter(url, event);    
         }
 
         var query = event.target.value + event.key;
@@ -116,7 +152,7 @@ function actionFilterLetter(query, url, status) {
         var matches = getSuggestions(query, ITEMS.map(_ => _.name));
         if (matches.length > 0)
             displaySuggestions(matches, (value) => {
-                matchInput(value, url);
+                matchInput(value, url, status);
                 go(url.value);
             });
 
@@ -149,6 +185,8 @@ function shortcutValue(event) {
 }
 
 function go(url) {
+    if (newTab.value==='on')
+        
     window.location.href = url;
 }
 

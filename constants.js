@@ -9,7 +9,11 @@ const _HTML_BOX = `
     </div>
 <div class="item">
 <div class="filter">
-  <input type="text" id="filter" placeholder="Enter key value to filter">
+  <div class="filter-tab">
+    <div><input type="text" id="filter" placeholder="Enter key value to filter"></div>
+    <div class="newtab"><input type="checkbox" id="newTab">
+    <span class="toggle-text">New Tab</span></div>
+    </div>
   <div class="status"></div>
 </div>
 <ul id="suggestionsList" style="display: none;"></ul>
@@ -51,9 +55,8 @@ const _STYLE_AS_STRING = `.balloon {
     display: block;
     margin-bottom: 5px;
   }
-  .balloon input {
+  .balloon input[type="text"] {
     width: 100%;
-    margin-bottom: 10px;
     background-color: white;
     border: 1px solid;
     color:black;
@@ -68,11 +71,21 @@ const _STYLE_AS_STRING = `.balloon {
   }
   .item {
     display: flex;
+    padding: 2px;
   }
   .filter {
-    display: block;
+    display: flex;
+    width: 100%;
   }
-    
+  .filter-tab {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+  }
+  .newtab {
+    display:flex;
+    align-items: center;
+  }
   #suggestionsList {
     list-style: none;
     margin: 0;
@@ -91,7 +104,10 @@ const _STYLE_AS_STRING = `.balloon {
     cursor: pointer;
     color: black;
   }
-  
+
+  #suggestionsList li.selected {
+    background-color: whitesmoke;
+  }
   #suggestionsList li:hover {
     background-color: #f5f5f5;
   }`
