@@ -9,7 +9,8 @@ const _HTML_BOX = `
     </div>
 <div class="item">
 <div class="filter">
-  <input type="text" id="filter" placeholder="Enter filter">
+  <input type="text" id="filter" placeholder="Enter key value to filter">
+  <div class="status"></div>
 </div>
 <ul id="suggestionsList" style="display: none;"></ul>
 </div>
@@ -18,7 +19,7 @@ const _HTML_BOX = `
     <input type="text" id="url" placeholder="https://">
     </div>
     <div class="item">
-      <input type="text" id="name" placeholder="Enter name">
+      <input type="text" id="name" placeholder="Enter the binding key value to save">
     </div>
     <button id="save">Save</button>
   `;

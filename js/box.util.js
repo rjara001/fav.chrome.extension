@@ -1,7 +1,11 @@
-let ITEMS=[];
+let ITEMS = [];
 
 function showBalloon(x, y) {
+
     balloon = shadowRoot.getElementById("balloon");
+
+    x= x || 0;
+    y= y || 0;
 
     balloon.style.display = "block";
 

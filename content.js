@@ -21,3 +21,6 @@ chrome.storage.local.get(function (result) {
     }
 });
 
+window.addEventListener('load', function (e) {
+    loadMoveEvents();
+});
