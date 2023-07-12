@@ -10,16 +10,20 @@
   <div class="container">
     <h1 class="header">Speed Shortcut</h1>
     <p class="instructions">
-        Press Ctrl + X
+      Press Ctrl + X
     </p>
     <div class="checkboxgroup">
 
       <label class="toggle-label">
-        <input checked type="radio" name="menu-active" class="toggle-checkbox" value="CtrlX" /><label for="option1">Press Ctrl + X</label>
-        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftX" /><label for="option1">Press Ctrl + Shift + X</label>
-        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftF" /><label for="option1">Press Ctrl + Shift + F</label>
-        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftD" /><label for="option1">Press Ctrl + Shift + D</label>
-        
+        <input checked type="radio" name="menu-active" class="toggle-checkbox" value="CtrlX" /><label
+          for="option1">Press Ctrl + X</label>
+        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftX" /><label for="option1">Press
+          Ctrl + Shift + X</label>
+        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftF" /><label for="option1">Press
+          Ctrl + Shift + F</label>
+        <input type="radio" name="menu-active" class="toggle-checkbox" value="CtrlShiftD" /><label for="option1">Press
+          Ctrl + Shift + D</label>
+
       </label>
     </div>
     <!-- <p class="feedback">Share your feedback with us by clicking <a
@@ -43,14 +47,16 @@
     </div>
   </form>
 
-  <table id="myTable">
-    <tr>
-      <th>Name</th>
-      <th>Url</th>
-      <th>Date</th>
-      <th>Actions</th>
-    </tr>
-  </table>
+  <div class="table-container">
+    <table id="myTable">
+      <tr>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </table>
+  </div>
 
   <button id="exportButton">Export Data</button>
   <input type="file" id="importInput" accept=".csv" style="display: none;">

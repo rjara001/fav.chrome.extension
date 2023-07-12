@@ -73,8 +73,7 @@ $(document).ready(function () {
     var filter = balloon.querySelector("#filter");
     var url = balloon.querySelector("#url");
     var header = balloon.querySelector(".balloon-header");
-    var status = balloon.querySelector(".status");
-    var newTab = balloon.querySelector("#newTab");
+    var status = balloon.querySelector(".status");    
 
     header.addEventListener('mousedown', startDragging);
 
@@ -185,15 +184,18 @@ function shortcutValue(event) {
 }
 
 function go(url) {
-    if (newTab.value==='on')
-        
-    window.location.href = url;
+    var newTab = balloon.querySelector("#newTab");
+
+    if (newTab.checked)
+        chrome.runtime.sendMessage({ action: "createNewTab", url });
+    else    
+        window.location.href = url;
 }
 
 function matchInput(name, url, status) {
     var item = ITEMS.find(_ => _.name === name);
 
-    status.innerText = 'ok';
+    // status.innerText = 'ok';
 
     if (item) {
         _matchInput = true;
