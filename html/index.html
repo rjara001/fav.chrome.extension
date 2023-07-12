@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Shortcut</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="../jquery/jquery.min.js"></script>
+    <script src="autocomplete.html.util.js"></script>
+    <script src="util.html.js"></script>
+    <script src="index.html.js"></script>
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">
+            <div class="filter">
+                <div class="filter-tab">
+                    <div>
+                        <input class="filter-input" type="text" id="filter" placeholder="Enter key value to filter">
+                        <ul id="suggestionsList" style="display: none;"></ul>
+                    </div>
+                    <div class="newtab"><input type="checkbox" id="newTab">
+                        <span class="toggle-text">New Tab</span>
+                    </div>
+                </div>
+                <div class="status"></div>
+            </div>
+        </div>
+        <hr>
+        <div class="item">
+            <input class="add" type="text" id="url" placeholder="https://">
+        </div>
+        <div class="item">
+            <input class="add" type="text" id="name" placeholder="Enter the binding key value to save">
+        </div>
+        <button id="save">Save</button>
+    </div>
+</body>
+
+</html>

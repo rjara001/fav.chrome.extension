@@ -17,7 +17,13 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["html/html-box.html"],
+            "resources": [
+                "html/styles.css",
+                "html/index.html.js",
+                "html/index.html",
+                "html/autocomplete.util.html.js",
+                "html/util.html.js"
+            ],
             "matches": [
                 "<all_urls>"
             ]
@@ -37,7 +43,6 @@
                 "jquery/jquery.min.js",
                 "js/box.util.js",
                 "js/store.js",
-                "js/autocomplete.util.js",
                 "js/move.js",
                 "constants.js",
                 "content.js",

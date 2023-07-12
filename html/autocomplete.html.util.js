@@ -13,7 +13,7 @@ function getSuggestions(query, suggestions) {
   }
   
   function displaySuggestions(matches, callback) {
-    var suggestionsList = shadowRoot.getElementById("suggestionsList");
+    var suggestionsList = document.getElementById("suggestionsList");
     suggestionsList.innerHTML = ""; // Clear previous suggestions
     suggestionsList.style.display = 'block';
   
@@ -30,4 +30,6 @@ function getSuggestions(query, suggestions) {
       });
       suggestionsList.appendChild(listItem);
     }
+
+    return suggestionsList;
   }

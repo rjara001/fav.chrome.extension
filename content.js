@@ -13,13 +13,20 @@ chrome.storage.local.get('fav', function (result) {
         _variables_loaded = true;
     }
 });
-chrome.runtime.sendMessage({ action: 'getStorage' }, function(response) {
-    // Handle the response from the background script
-    // console.log(response);
-    if (response.shorcutValue) {
-        shorcutValue = response.shorcutValue;
+// chrome.runtime.sendMessage({ action: 'getStorage' }, function(response) {
+//     // Handle the response from the background script
+//     // console.log(response);
+//     if (response.shorcutValue) {
+//         shorcutValue = response.shorcutValue;
+//     }
+//   });
+  chrome.storage.local.get(function (result) {
+
+    if (result.shorcutValue) {
+        shorcutValue = result.shorcutValue;
     }
-  });
+});
+
 
 window.addEventListener('load', function (e) {
     loadMoveEvents();
