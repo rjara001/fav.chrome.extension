@@ -3,12 +3,19 @@ var shadowRoot;
 var balloon;
 var _matchInput = false;
 
+function barMessage(text) {
+    var status = balloon.querySelector(".status-bar");
+    status.innerText = text;
+}
+
 function save() {
     var url = shadowRoot.getElementById("url");
     var name = shadowRoot.getElementById("name");
 
     if (!ITEMS.find(_ => _.name === name.value))
         localSaveValue({ name: name.value, url: url.value, date: (new Date()).toISOString() });
+
+        barMessage('saved successfully');
 }
 
 function clean(input) {
@@ -50,7 +57,7 @@ $(document).ready(function () {
 
     document.body.appendChild(container);
 
-    shadowRoot = container.attachShadow({ mode: 'open' });
+    shadowRoot = container.attachShadow({ mode: 'closed' });
 
     // Create a new HTML element
     balloon = document.createElement("div");
@@ -101,6 +108,7 @@ $(document).ready(function () {
               if (nextItem) {
                 selectedItem.classList.remove("selected");
                 nextItem.classList.add("selected");
+                barMessage(`Matched with ${nextItem.innerText} [Press Enter to proceed.]`);
               }
             } else {
               var firstItem = suggestionsList.querySelector("li");
@@ -108,6 +116,7 @@ $(document).ready(function () {
                 firstItem.classList.add("selected");
               }
             }
+            
           }
           
           if (event.key === "ArrowUp") {
@@ -119,6 +128,7 @@ $(document).ready(function () {
               if (previousItem) {
                 selectedItem.classList.remove("selected");
                 previousItem.classList.add("selected");
+                barMessage(`Matched with ${previousItem.innerText} [Press Enter to proceed.]`);
               }
             }
           }
@@ -186,6 +196,8 @@ function shortcutValue(event) {
 function go(url) {
     var newTab = balloon.querySelector("#newTab");
 
+    barMessage(`Moving to the selected URL: ${addEllipsis(url,40)}`);
+
     if (newTab.checked)
         chrome.runtime.sendMessage({ action: "createNewTab", url });
     else    
@@ -195,6 +207,7 @@ function go(url) {
 function matchInput(name, url, status) {
     var item = ITEMS.find(_ => _.name === name);
 
+    barMessage(`Matched with ${name} [Press Enter to proceed.]`);
     // status.innerText = 'ok';
 
     if (item) {

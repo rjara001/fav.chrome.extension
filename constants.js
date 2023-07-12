@@ -30,11 +30,17 @@ const _HTML_BOX = `
       <input type="text" id="name" placeholder="Enter the binding key value to save">
     </div>
     <button id="save">Save</button>
+    <div class="status-bar"></div>
   `;
 
-const _STYLE_AS_STRING = `.balloon {
+const _STYLE_AS_STRING = `
+  :host {
+    all: initial; /* Reset all styles */
+    display: block; /* Make the host element a block-level element */
+  }
+  .balloon {
     position: fixed;
-    padding: 4px;
+    padding: 2px;
     background-color: #f1f1f1;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     display: none;
@@ -91,7 +97,14 @@ const _STYLE_AS_STRING = `.balloon {
     align-items: center;
     margin-bottom: auto;
   }
-
+  .status-bar {
+    height: 18px;
+    background-color: #999;
+    margin-top: 5px;
+    font-size: 12px;
+    padding-left: 5px;
+    color: bisque;
+  }
   #suggestionsList {
     list-style: none;
     margin: 0;
