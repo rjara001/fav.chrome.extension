@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     document.body.appendChild(container);
 
-    shadowRoot = container.attachShadow({ mode: 'closed' });
+    shadowRoot = container.attachShadow({ mode: 'open' });
 
     // Create a new HTML element
     balloon = document.createElement("div");
@@ -73,81 +73,81 @@ $(document).ready(function () {
 
     shadowRoot.appendChild(linkElem);
 
-    // Example close button functionality
-    var closeButton = balloon.querySelector(".close-btn");
-    var saveButton = balloon.querySelector("#save");
-    var name = balloon.querySelector("#name");
-    var filter = balloon.querySelector("#filter");
-    var url = balloon.querySelector("#url");
-    var header = balloon.querySelector(".balloon-header");
-    var status = balloon.querySelector(".status");    
+    // // Example close button functionality
+    // var closeButton = balloon.querySelector(".close-btn");
+    // var saveButton = balloon.querySelector("#save");
+    // var name = balloon.querySelector("#name");
+    // var filter = balloon.querySelector("#filter");
+    // var url = balloon.querySelector("#url");
+    // var header = balloon.querySelector(".balloon-header");
+    // var status = balloon.querySelector(".status");    
 
-    header.addEventListener('mousedown', startDragging);
+    // header.addEventListener('mousedown', startDragging);
 
-    closeButton.addEventListener("click", function () {
-        hideBalloon();
-    });
+    // closeButton.addEventListener("click", function () {
+    //     hideBalloon();
+    // });
 
-    saveButton.addEventListener("click", function () {
-        save();
-    });
+    // saveButton.addEventListener("click", function () {
+    //     save();
+    // });
 
-    saveButton.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" && url.value) {
-            save();
-        }
-    });
+    // saveButton.addEventListener("keydown", function (event) {
+    //     if (event.key === "Enter" && url.value) {
+    //         save();
+    //     }
+    // });
  
-    filter.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowDown") {
-            var suggestionsList = shadowRoot.getElementById("suggestionsList");
-            var selectedItem = suggestionsList.querySelector(".selected");
+    // filter.addEventListener("keydown", function (event) {
+    //     if (event.key === "ArrowDown") {
+    //         var suggestionsList = shadowRoot.getElementById("suggestionsList");
+    //         var selectedItem = suggestionsList.querySelector(".selected");
           
-            if (selectedItem) {
-              var nextItem = selectedItem.nextElementSibling;
-              if (nextItem) {
-                selectedItem.classList.remove("selected");
-                nextItem.classList.add("selected");
-                barMessage(`Matched with ${nextItem.innerText} [Press Enter to proceed.]`);
-              }
-            } else {
-              var firstItem = suggestionsList.querySelector("li");
-              if (firstItem) {
-                firstItem.classList.add("selected");
-              }
-            }
+    //         if (selectedItem) {
+    //           var nextItem = selectedItem.nextElementSibling;
+    //           if (nextItem) {
+    //             selectedItem.classList.remove("selected");
+    //             nextItem.classList.add("selected");
+    //             barMessage(`Matched with ${nextItem.innerText} [Press Enter to proceed.]`);
+    //           }
+    //         } else {
+    //           var firstItem = suggestionsList.querySelector("li");
+    //           if (firstItem) {
+    //             firstItem.classList.add("selected");
+    //           }
+    //         }
             
-          }
+    //       }
           
-          if (event.key === "ArrowUp") {
-            var suggestionsList = shadowRoot.getElementById("suggestionsList");
-            var selectedItem = suggestionsList.querySelector(".selected");
+    //       if (event.key === "ArrowUp") {
+    //         var suggestionsList = shadowRoot.getElementById("suggestionsList");
+    //         var selectedItem = suggestionsList.querySelector(".selected");
           
-            if (selectedItem) {
-              var previousItem = selectedItem.previousElementSibling;
-              if (previousItem) {
-                selectedItem.classList.remove("selected");
-                previousItem.classList.add("selected");
-                barMessage(`Matched with ${previousItem.innerText} [Press Enter to proceed.]`);
-              }
-            }
-          }
-        if (event.key === "Enter") {
-            var suggestionsList = shadowRoot.getElementById("suggestionsList");
-            var selectedItem = suggestionsList.querySelector(".selected");
+    //         if (selectedItem) {
+    //           var previousItem = selectedItem.previousElementSibling;
+    //           if (previousItem) {
+    //             selectedItem.classList.remove("selected");
+    //             previousItem.classList.add("selected");
+    //             barMessage(`Matched with ${previousItem.innerText} [Press Enter to proceed.]`);
+    //           }
+    //         }
+    //       }
+    //     if (event.key === "Enter") {
+    //         var suggestionsList = shadowRoot.getElementById("suggestionsList");
+    //         var selectedItem = suggestionsList.querySelector(".selected");
 
-            if (selectedItem)
-                actionFilterLetter(selectedItem.innerText, url, status);
+    //         if (selectedItem)
+    //             actionFilterLetter(selectedItem.innerText, url, status);
 
-            actionFilterEnter(url, event);    
-        }
+    //         actionFilterEnter(url, event);    
+    //     }
 
-        var query = event.target.value + event.key;
-        if (event.key === "Backspace")
-            return;
+    //     var query = event.target.value + event.key;
+    //     if (event.key === "Backspace")
+    //         return;
 
-        actionFilterLetter(query, url, status);
-    });
+    //     actionFilterLetter(query, url, status);
+    // });
 
     hideBalloon();
 });

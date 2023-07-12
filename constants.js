@@ -7,33 +7,11 @@ const _HTML_BOX = `
       <h3>Speed Shortcut</h3>
       <span class="close-btn">&times;</span>
     </div>
-<div class="item">
-<div class="filter">
-  <div class="filter-tab">
-    <div>
-      <input type="text" id="filter" placeholder="Enter key value to filter">
-      <ul id="suggestionsList" style="display: none;"></ul>
-      </div>
-      
-    <div class="newtab"><input type="checkbox" id="newTab">
-    <span class="toggle-text">New Tab</span></div>
-    </div>
-  <div class="status"></div>
-</div>
-
-</div>
-<hr>
-<div class="item">
-    <input type="text" id="url" placeholder="https://">
-    </div>
-    <div class="item">
-      <input type="text" id="name" placeholder="Enter the binding key value to save">
-    </div>
-    <button id="save">Save</button>
+    <iframe src='html/html-box.html' style="border-width: 0px;"></iframe>
     <div class="status-bar"></div>
   `;
 
-const _STYLE_AS_STRING = `
+const _STYLE_AS_STRING = `  
   :host {
     all: initial; /* Reset all styles */
     display: block; /* Make the host element a block-level element */

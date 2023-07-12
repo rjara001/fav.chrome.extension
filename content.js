@@ -13,13 +13,13 @@ chrome.storage.local.get('fav', function (result) {
         _variables_loaded = true;
     }
 });
-
-chrome.storage.local.get(function (result) {
-
-    if (result.shorcutValue) {
-        shorcutValue = result.shorcutValue;
+chrome.runtime.sendMessage({ action: 'getStorage' }, function(response) {
+    // Handle the response from the background script
+    // console.log(response);
+    if (response.shorcutValue) {
+        shorcutValue = response.shorcutValue;
     }
-});
+  });
 
 window.addEventListener('load', function (e) {
     loadMoveEvents();
