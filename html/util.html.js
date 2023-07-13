@@ -63,12 +63,40 @@ function go(url) {
 function matchInput(name, url, status) {
     var item = ITEMS.find(_ => _.name === name);
 
-    // barMessage(`Matched with ${name} [Press Enter to proceed.]`);
-    // status.innerText = 'ok';
-
     if (item) {
         _matchInput = true;
         // filter.value = item.name;
         url.value = item.url;
     }
 }
+
+function selectionFilterLetter(suggestionsList, selectedItem) {
+    var suggestionsList = document.getElementById("suggestionsList");
+    var selectedItem = suggestionsList.querySelector(".selected");
+
+    if (selectedItem) {
+        var previousItem = selectedItem.previousElementSibling;
+        if (previousItem) {
+            selectedItem.classList.remove("selected");
+            previousItem.classList.add("selected");
+            barMessage(`Matched with ${previousItem.innerText} [Press Enter to proceed.]`);
+        }
+    }
+    return { suggestionsList, selectedItem };
+}
+
+function preSelectionFilterLetter(suggestionsList, selectedItem) {
+    var suggestionsList = document.getElementById("suggestionsList");
+    var selectedItem = suggestionsList.querySelector(".selected");
+
+    if (!selectedItem) {
+        var previousItem = suggestionsList.firstChild;
+        if (previousItem) {
+            previousItem.classList.add("selected");
+            barMessage(`Matched with ${previousItem.innerText} [Press Enter to proceed.]`);
+        }
+    }
+    return { suggestionsList, selectedItem };
+}
+
+

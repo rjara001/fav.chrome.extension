@@ -2,6 +2,7 @@ var ITEMS = [];
 
 $(document).ready(function () {
 
+    // debugger;
     var saveButton = document.querySelector("#save");
     var name = document.querySelector("#name");
     var filter = document.querySelector("#filter");
@@ -42,17 +43,7 @@ $(document).ready(function () {
         }
 
         if (event.key === "ArrowUp") {
-            var suggestionsList = document.getElementById("suggestionsList");
-            var selectedItem = suggestionsList.querySelector(".selected");
-
-            if (selectedItem) {
-                var previousItem = selectedItem.previousElementSibling;
-                if (previousItem) {
-                    selectedItem.classList.remove("selected");
-                    previousItem.classList.add("selected");
-                    barMessage(`Matched with ${previousItem.innerText} [Press Enter to proceed.]`);
-                }
-            }
+            var { suggestionsList, selectedItem } = selectionFilterLetter(suggestionsList, selectedItem);
         }
         if (event.key === "Enter") {
 
@@ -70,6 +61,7 @@ $(document).ready(function () {
             return;
 
         actionFilterLetter(query, url, status);
+        preSelectionFilterLetter(suggestionsList, selectedItem);
     });
 
     window.addEventListener('message', function (event) {
@@ -88,4 +80,3 @@ $(document).ready(function () {
     // });
 
 });
-
