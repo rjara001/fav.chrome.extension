@@ -1,27 +1,18 @@
-import { getMenu } from "./globals/index";
+import { getItems, setItems } from "./global/index.js";
 
 export function localSaveValue(item:any) {
-    getMenu().items.push(item);
+    getItems().push(item);
             
-    chrome.storage.local.set({ 'menu': getMenu() }, function() {
-        
-    });
-}
-
-export function localUpdateValue(item:any) {
-    getMenu().items = getMenu().items.filter(_=>_.text !== item.text);
-
-    getMenu().items.push(item);
-            
-    chrome.storage.local.set({ 'menu': getMenu() }, function() {
+    chrome.storage.local.set({ 'fav': getItems() }, function() {
         
     });
 }
 
 export function localRemoveValue(value:any) {
-    getMenu().items = getMenu().items.filter(_=>_.text !== value.text);
+    setItems(getItems().filter((_:any)=>_.name !== value.name));
             
-    chrome.storage.local.set({ 'menu': getMenu() }, function() {
+    chrome.storage.local.set({ 'fav': getItems() }, function() {
         
     });
 }
+

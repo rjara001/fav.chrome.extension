@@ -1,4 +1,5 @@
 import { getItems, getShadowRoot } from "./src/global/index.js";
+import { localSaveValue } from "./src/store.js";
 
 
 function save() {

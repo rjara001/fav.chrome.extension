@@ -1,14 +1,14 @@
 export let _shadowRoot : any;
 export let _balloon : HTMLElement;
 export let _matchInput = false;
-export let _ITEMS = [];
+export let _ITEMS:any[] = [];
 
 
-export const getItems = () => {
+export const getItems = ():any[] => {
     return _ITEMS;
 }
 
-export const setItems = (value:[]) => {
+export const setItems = (value:any[]) => {
     _ITEMS = value;
 }
 
