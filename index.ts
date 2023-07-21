@@ -1,14 +1,11 @@
-
-var shadowRoot;
-var balloon;
-var _matchInput = false;
+import { getItems, getShadowRoot } from "./src/global/index.js";
 
 
 function save() {
-    var url = shadowRoot.getElementById("url");
-    var name = shadowRoot.getElementById("name");
+    var url = getShadowRoot().getElementById("url");
+    var name = getShadowRoot().getElementById("name");
 
-    if (!ITEMS.find(_ => _.name === name.value))
+    if (!getItems().find((_:any) => _.name === name.value))
         localSaveValue({ name: name.value, url: url.value, date: (new Date()).toISOString() });
 
     barMessage('saved successfully');

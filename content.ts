@@ -9,7 +9,7 @@ document.addEventListener('click', function (event) {
 
 chrome.storage.local.get('fav', function (result) {
     if (result.fav) {
-        ITEMS = [...ITEMS, ...result.fav];
+        getItem() = [...getItem(), ...result.fav];
         _variables_loaded = true;
     }
 });
