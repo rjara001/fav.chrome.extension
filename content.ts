@@ -1,3 +1,6 @@
+import { clickOutOfBox, hideBalloon, isMenuOpened } from "./src/box.util.js";
+import { getItems, setItems, setShorcutValue } from "./src/global/index.js";
+import { loadMoveEvents } from "./src/move.js";
 
 var _variables_loaded = false;
 var shorcutValue = 'CtrlX';
@@ -9,7 +12,7 @@ document.addEventListener('click', function (event) {
 
 chrome.storage.local.get('fav', function (result) {
     if (result.fav) {
-        getItem() = [...getItem(), ...result.fav];
+        setItems([...getItems(), ...result.fav]);
         _variables_loaded = true;
     }
 });
@@ -23,7 +26,7 @@ chrome.storage.local.get('fav', function (result) {
   chrome.storage.local.get(function (result) {
 
     if (result.shorcutValue) {
-        shorcutValue = result.shorcutValue;
+        setShorcutValue(result.shorcutValue);
     }
 });
 

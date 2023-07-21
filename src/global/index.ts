@@ -2,6 +2,15 @@ export let _shadowRoot : any;
 export let _balloon : HTMLElement;
 export let _matchInput = false;
 export let _ITEMS:any[] = [];
+export let _shorcutValue:string=''
+
+export const getShorcutValue = ():string => {
+    return _shorcutValue;
+}
+
+export const setShorcutValue = (value:string) => {
+    _shorcutValue = value;
+}
 
 
 export const getItems = ():any[] => {
